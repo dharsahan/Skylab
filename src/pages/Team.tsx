@@ -16,7 +16,7 @@ export function Team() {
       role: "Member"
     },
     {
-      name: "",
+      name: "Prakash",
       role :"Member"
     }
   ];

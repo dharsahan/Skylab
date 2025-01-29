@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Satellite } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 type TableData = string[][];
 
 export function Technology() {
   const [selectedTech, setSelectedTech] = useState<number | null>(null);
+  const navigate = useNavigate();
 
   const techDetails = [
     {
@@ -46,17 +48,20 @@ export function Technology() {
     {
       icon: <Satellite className="w-8 h-8 mb-4" />,
       title: "Hyper-Spectral Imaging Satellites",
-      description: "Identifying crop health, pest detection, soil nutrient mapping, and atmospheric studies."
+      description: "High-resolution spectral data for detailed crop analysis",
+      path: "/technology/hyperspectral"
     },
     {
       icon: <Satellite className="w-8 h-8 mb-4" />,
       title: "Multi-Spectral Imaging Satellites",
-      description: "Monitoring large-scale crop patterns, deforestation, vegetation changes, and heat stress detection."
+      description: "Wide area coverage for agricultural monitoring",
+      path: "/technology/multispectral"
     },
     {
       icon: <Satellite className="w-8 h-8 mb-4" />,
-      title: "Synthetic Aperture Radar Satellites",
-      description: "Soil moisture analysis, biomass estimation, disaster management, and waterlogging detection."
+      title: "Synthetic Aperture Radar",
+      description: "All-weather monitoring capabilities",
+      path: "/technology/sar"
     }
   ];
 
@@ -124,8 +129,8 @@ export function Technology() {
             {technologies.map((tech, index) => (
               <div 
                 key={index}
-                className="bg-gray-800 p-6 rounded-lg hover:bg-gray-700 transition-colors duration-300 cursor-pointer"
-                onClick={() => setSelectedTech(index)}
+                onClick={() => navigate(tech.path)}
+                className="cursor-pointer bg-white/5 backdrop-blur-lg rounded-lg p-6 hover:bg-white/10 transition-all duration-300"
               >
                 <div className="flex flex-col items-center">
                   {tech.icon}

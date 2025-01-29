@@ -1,0 +1,10 @@
+.app-background {
+  min-height: 100vh;
+  background-image: url('/images/earth3.jpg   ');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: rgba(49, 46, 129, 0.8);
+  background-blend-mode: overlay;
+}
+
