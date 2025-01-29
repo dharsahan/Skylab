@@ -117,7 +117,7 @@ export function Home() {
         </p>
         <div className="relative w-full mt-8 rounded-2xl overflow-hidden aspect-[16/9]">
         <img 
-          src="/images/dash.jpg" 
+          src="https://i.postimg.cc/wv4M0tDS/dash.jpg" 
           alt="Space Innovation"
           className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
         />
