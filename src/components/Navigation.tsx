@@ -30,7 +30,7 @@ export function Navigation() {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <Link to="/" className="flex items-center space-x-2">
-              <img src="images/img.png" alt="Logo" className="h-8 w-auto" />
+              <img src="https://i.postimg.cc/KKNkQQrL/img.png" alt="Logo" className="h-8 w-auto" />
             </Link>
 
             {/* Desktop Navigation */}
