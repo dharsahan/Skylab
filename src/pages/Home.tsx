@@ -138,7 +138,7 @@ export function Home() {
             transform hover:scale-[1.02] transition-transform duration-700
             order-2 md:order-1">
       <img 
-      src="/images/hero-image.jpg"
+      src="https://i.postimg.cc/rD1G0GNY/IMG-20250129-WA0005.jpg"
       alt="Space Technology"
       className="w-full h-full object-cover scale-105"
       />
@@ -220,7 +220,7 @@ export function Home() {
       <div className="relative h-[500px] rounded-2xl overflow-hidden 
               transform hover:scale-[1.02] transition-transform duration-700">
       <img 
-        src="/images/hero-image.jpg"
+        src="https://i.postimg.cc/QHWJsZ9D/IMG-20250129-WA0012.jpg"
         alt="Space Technology"
         className="w-full h-full object-cover scale-105"
       />
