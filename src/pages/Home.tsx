@@ -138,7 +138,7 @@ export function Home() {
             transform hover:scale-[1.02] transition-transform duration-700
             order-2 md:order-1">
       <img 
-      src="https://i.postimg.cc/LhFrFpfm/IMG-20250129-WA0012.jpg"
+      src="/images/hero-image.jpg"
       alt="Space Technology"
       className="w-full h-full object-cover scale-105"
       />
@@ -161,7 +161,7 @@ export function Home() {
       </p>
 
       <button 
-      onClick={() => navigate('/contact')}
+      onClick={() => navigate('/technology')}
       className="group relative px-10 py-4 
             bg-gradient-to-r from-purple-600 to-pink-600 
             rounded-xl overflow-hidden
@@ -201,7 +201,7 @@ export function Home() {
       </p>
 
       <button 
-        onClick={() => navigate('/contact')}
+        onClick={() => navigate('/technology')}
         className="group relative px-10 py-4 
             bg-gradient-to-r from-purple-600 to-pink-600 
             rounded-xl overflow-hidden
@@ -220,7 +220,7 @@ export function Home() {
       <div className="relative h-[500px] rounded-2xl overflow-hidden 
               transform hover:scale-[1.02] transition-transform duration-700">
       <img 
-        src="https://i.postimg.cc/0z4BWRPR/IMG-20250129-WA0005.jpg"
+        src="/images/hero-image.jpg"
         alt="Space Technology"
         className="w-full h-full object-cover scale-105"
       />
@@ -229,6 +229,92 @@ export function Home() {
       </div>
     </div>
       </div>      
+      {/* Pricing Section */}
+      <div className="w-full px-8 py-20">
+        <h2 className="text-4xl md:text-5xl font-bold text-center 
+                      bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 
+                      bg-clip-text text-transparent mb-16">
+          Choose Your Plan
+        </h2>
+        
+        <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          {/* Basic Plan */}
+          <div className="bg-black/20 backdrop-blur-xl rounded-2xl border border-white/10
+                          p-8 hover:border-purple-500/50 transition-all duration-300
+                          hover:shadow-lg hover:shadow-purple-500/10">
+            <h3 className="text-2xl font-bold text-white mb-4">Basic</h3>
+            <p className="text-4xl font-bold text-white mb-6">₹999<span className="text-lg text-white/60">/mo</span></p>
+            <ul className="space-y-4 mb-8">
+              <li className="flex items-center text-white/80">
+                <span className="mr-2">✓</span> Daily Satellite Images
+              </li>
+              <li className="flex items-center text-white/80">
+                <span className="mr-2">✓</span> Basic Analytics
+              </li>
+              <li className="flex items-center text-white/80">
+                <span className="mr-2">✓</span> Email Support
+              </li>
+            </ul>
+            <button className="w-full py-3 rounded-xl bg-purple-600 text-white font-medium
+                               hover:bg-purple-700 transition-colors duration-300">
+              Get Started
+            </button>
+          </div>
+  
+          {/* Pro Plan */}
+          <div className="bg-black/30 backdrop-blur-xl rounded-2xl border border-purple-500/50
+                          p-8 transform scale-105 shadow-lg shadow-purple-500/20
+                          hover:shadow-purple-500/30 transition-all duration-300">
+            <h3 className="text-2xl font-bold text-white mb-4">Pro</h3>
+            <p className="text-4xl font-bold text-white mb-6">₹2499<span className="text-lg text-white/60">/mo</span></p>
+            <ul className="space-y-4 mb-8">
+              <li className="flex items-center text-white/80">
+                <span className="mr-2">✓</span> All Basic Features
+              </li>
+              <li className="flex items-center text-white/80">
+                <span className="mr-2">✓</span> Advanced Analytics
+              </li>
+              <li className="flex items-center text-white/80">
+                <span className="mr-2">✓</span> Priority Support
+              </li>
+              <li className="flex items-center text-white/80">
+                <span className="mr-2">✓</span> Custom Reports
+              </li>
+            </ul>
+            <button className="w-full py-3 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600
+                               font-medium text-white hover:from-pink-600 hover:to-purple-600
+                               transition-all duration-300">
+              Get Pro
+            </button>
+          </div>
+  
+          {/* Enterprise Plan */}
+          <div className="bg-black/20 backdrop-blur-xl rounded-2xl border border-white/10
+                          p-8 hover:border-purple-500/50 transition-all duration-300
+                          hover:shadow-lg hover:shadow-purple-500/10">
+            <h3 className="text-2xl font-bold text-white mb-4">Enterprise</h3>
+            <p className="text-4xl font-bold text-white mb-6">Custom</p>
+            <ul className="space-y-4 mb-8">
+              <li className="flex items-center text-white/80">
+                <span className="mr-2">✓</span> All Pro Features
+              </li>
+              <li className="flex items-center text-white/80">
+                <span className="mr-2">✓</span> Custom Integration
+              </li>
+              <li className="flex items-center text-white/80">
+                <span className="mr-2">✓</span> 24/7 Support
+              </li>
+              <li className="flex items-center text-white/80">
+                <span className="mr-2">✓</span> Dedicated Manager
+              </li>
+            </ul>
+            <button className="w-full py-3 rounded-xl bg-white/10 text-white font-medium
+                               hover:bg-white/20 transition-colors duration-300">
+              Contact Sales
+            </button>
+          </div>
+        </div>
+      </div>
       {/* Scroll indicator */}
       
     </section>
