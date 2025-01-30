@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Rocket } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useInView } from 'useInView';
 
 const images = [
   '/images/logo1.png',
@@ -12,15 +13,34 @@ const images = [
 
 export function Home() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [scrollPosition, setScrollPosition] = useState(0);
   const navigate = useNavigate();
+
+  const headlineRef = useRef(null);
+  const firstHeroRef = useRef(null);
+  const secondHeroRef = useRef(null);
+  const pricingRef = useRef(null);
+
+  const headlineVisible = useInView(headlineRef);
+  const firstHeroVisible = useInView(firstHeroRef);
+  const secondHeroVisible = useInView(secondHeroRef);
+  const pricingVisible = useInView(pricingRef);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
 
+    const handleScroll = () => {
+      setScrollPosition(window.scrollY);
+    };
+
     window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   return (
@@ -44,7 +64,10 @@ export function Home() {
               hover:scale-[1.02]
               border border-white/10 hover:border-purple-500/50
               origin-center will-change-transform
-              w-full max-w-3xl mx-auto">
+              w-full max-w-3xl mx-auto"
+              style={{
+                transform: `translateY(${scrollPosition * 0.1}px)`,
+              }}>
         
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold 
                tracking-tight animate-fade-in
@@ -104,133 +127,158 @@ export function Home() {
       
 
       {/* Headline Section */}
-      <div className="w-full px-8 mb-16">
-        <h1 className="text-6xl md:text-7xl font-bold 
-        text-left
-        bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 
-        bg-clip-text text-transparent 
-        mb-6">
-        Maximize Yields with Real-Time Insights
-        </h1>
-        <p className="text-xl text-white/70 text-left max-w-3xl">
-        Increase your harvest and boost your profits with SkyLabs' real-time satellite monitoring. Get daily updates, personalized recommendations, and the tools you need to achieve maximum yields and a more profitable farm.
-        </p>
-        <div className="relative w-full mt-8 rounded-2xl overflow-hidden aspect-[16/9]">
-        <img 
-          src="https://i.postimg.cc/wv4M0tDS/dash.jpg" 
-          alt="Space Innovation"
-          className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+      <section 
+        ref={headlineRef}
+        className={`relative py-24 overflow-hidden transition-all duration-1000 transform
+        ${headlineVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}>
+        {/* Glowing orb effects */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/3 right-1/4 w-[300px] h-[300px] bg-blue-500/10 rounded-full blur-3xl" />
+
+        <div className="container mx-auto px-4 relative max-w-6xl">
+          <div className="flex flex-col items-center text-center">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-12 
+                          bg-gradient-to-r from-white to-purple-200 
+                          bg-clip-text text-transparent">
+              Maximize Yields with Real-Time Insights
+            </h2>
+            <div className="w-full relative mb-12">
+        {/* Glowing border effect */}
+        <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-blue-600 rounded-xl blur-sm" />
+        <div className="relative bg-gray-900 rounded-xl overflow-hidden border border-purple-500/20">
+          <img
+            src="https://i.postimg.cc/wv4M0tDS/dash.jpg"
+            alt="SkyLabs Agricultural Dashboard"
+            className="w-full h-auto"
+          />
+          {/* Reflection effect */}
+          <div className="absolute inset-0 bg-gradient-to-t from-purple-900/20 to-transparent" />
         </div>
       </div>
-      {/* Hero Container */}
-  <div className="w-[90%] max-w-7xl mx-auto 
-        bg-black/20 
-        rounded-3xl border border-white/10 
+
+      <p className="text-gray-300 text-lg md:text-xl max-w-3xl leading-relaxed">
+        Increase your harvest and boost your profits with SkyLabs' real-time satellite monitoring. 
+        Get daily updates, personalized recommendations, and the tools you need to achieve maximum 
+        yields and a more profitable farm.
+      </p>
+          </div>
+        </div>
+      </section>
+      {/* First Hero Container */}
+      <div 
+        ref={firstHeroRef}
+        className={`w-[90%] max-w-7xl mx-auto 
+        bg-black/20 rounded-3xl border border-white/10 
         shadow-2xl shadow-purple-500/5
         hover:shadow-purple-500/10 
-        transition-all duration-500 ease-out 
-        p-10 mb-20">
-    <div className="grid md:grid-cols-2 gap-12 items-center">
-    {/* Left Image with enhanced effects */}
-    <div className="relative h-[500px] rounded-2xl overflow-hidden 
-            transform hover:scale-[1.02] transition-transform duration-700
-            order-2 md:order-1">
-      <img 
-      src="https://i.postimg.cc/rD1G0GNY/IMG-20250129-WA0005.jpg"
-      alt="Space Technology"
-      className="w-full h-full object-cover scale-105"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t 
-              from-black/60 via-black/20 to-transparent" />
-    </div>
+        transition-all duration-1000 transform
+        p-10 mb-20
+        ${firstHeroVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-20'}`}>
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+        {/* Left  Image with enhanced effects */}
+        <div className="relative h-[500px] rounded-2xl overflow-hidden 
+                transform hover:scale-[1.02] transition-transform duration-700
+                order-2 md:order-1">
+          <img 
+          src="https://i.postimg.cc/QHWJsZ9D/IMG-20250129-WA0012.jpg"
+          alt="Space Technology"
+          className="w-full h-full object-cover scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t 
+                  from-black/60 via-black/20 to-transparent" />
+        </div>
 
-    {/* Right Content with enhanced animations */}
-    <div className="text-left space-y-6 transform transition-all duration-700
-            order-1 md:order-2">
-      <h2 className="text-5xl md:text-6xl font-bold 
-            bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 
-            bg-clip-text text-transparent 
-            leading-tight">
-       Maximize Your Harvest with Personalized AI Advice
-      </h2>
-      
-      <p className="text-xl text-white/80 leading-relaxed">
-      Farming smarter is easier than ever with SkyLabs. Get personalized, AI-powered advice delivered right to your phone. From irrigation schedules to fertilizer recommendations, we make data-driven decisions simple and accessible
-      </p>
+        {/* Right Content with enhanced animations */}
+        <div className="text-left space-y-6 transform transition-all duration-700
+                order-1 md:order-2">
+          <h2 className="text-5xl md:text-6xl font-bold 
+                bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 
+                bg-clip-text text-transparent 
+                leading-tight">
+          Maximize Your Harvest with Personalized AI Advice
+          </h2>
+          
+          <p className="text-xl text-white/80 leading-relaxed">
+          Farming smarter is easier than ever with SkyLabs. Get personalized, AI-powered advice delivered right to your phone. From irrigation schedules to fertilizer recommendations, we make data-driven decisions simple and accessible
+          </p>
 
-      <button 
-      onClick={() => navigate('/technology')}
-      className="group relative px-10 py-4 
-            bg-gradient-to-r from-purple-600 to-pink-600 
-            rounded-xl overflow-hidden
-            hover:scale-105 active:scale-95
-            transition-all duration-300 ease-out"
-      >
-      <span className="relative z-10 text-white font-semibold 
-               text-lg flex items-center gap-3">
-        Get Started
-        <Rocket className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
-      </span>
-      </button>
-    </div>
-    </div>
-  </div>
-
-      {/* Hero Container */}
-      <div className="w-[90%] max-w-7xl mx-auto 
-            bg-black/20 
-            rounded-3xl border border-white/10 
-            shadow-2xl shadow-purple-500/5
-            hover:shadow-purple-500/10 
-            transition-all duration-500 ease-out 
-            p-10 mb-20">
-    <div className="grid md:grid-cols-2 gap-12 items-center">
-      {/* Left Content with enhanced animations */}
-      <div className="text-left space-y-6 transform transition-all duration-700">
-      <h2 className="text-5xl md:text-6xl font-bold 
-              bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 
-              bg-clip-text text-transparent 
-              leading-tight">
-        Stay Ahead of Threats with Instant Alerts
-      </h2>
-      
-      <p className="text-xl text-white/80 leading-relaxed">
-      Never lose sleep worrying about your crops. SkyLabs' smart alert system monitors your fields 24/7 and sends you real-time notifications if any potential issues arise. From pest and disease alerts to soil moisture and nutrient deficiency warnings, we help you stay ahead of threats and ensure a healthy, thriving harvest. Protect your investment and maximize your profits with SkyLabs
-      </p>
-
-      <button 
-        onClick={() => navigate('/technology')}
-        className="group relative px-10 py-4 
-            bg-gradient-to-r from-purple-600 to-pink-600 
-            rounded-xl overflow-hidden
-            hover:scale-105 active:scale-95
-            transition-all duration-300 ease-out"
-      >
-        <span className="relative z-10 text-white font-semibold 
-               text-lg flex items-center gap-3">
-        Get Started
-        <Rocket className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
-        </span>
-      </button>
+          <button 
+          onClick={() => navigate('/technology')}
+          className="group relative px-10 py-4 
+                bg-gradient-to-r from-purple-600 to-pink-600 
+                rounded-xl overflow-hidden
+                hover:scale-105 active:scale-95
+                transition-all duration-300 ease-out"
+          >
+          <span className="relative z-10 text-white font-semibold 
+                   text-lg flex items-center gap-3">
+            Get Started
+            <Rocket className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+          </span>
+          </button>
+        </div>
+        </div>
       </div>
 
-      {/* Right Image with enhanced effects */}
-      <div className="relative h-[500px] rounded-2xl overflow-hidden 
-              transform hover:scale-[1.02] transition-transform duration-700">
-      <img 
-        src="https://i.postimg.cc/QHWJsZ9D/IMG-20250129-WA0012.jpg"
-        alt="Space Technology"
-        className="w-full h-full object-cover scale-105"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t 
-              from-black/60 via-black/20 to-transparent" />
-      </div>
-    </div>
+      {/* Second Hero Container */}
+      <div 
+        ref={secondHeroRef}
+        className={`w-[90%] max-w-7xl mx-auto 
+        bg-black/20 rounded-3xl border border-white/10 
+        shadow-2xl shadow-purple-500/5
+        hover:shadow-purple-500/10 
+        transition-all duration-1000 transform
+        p-10 mb-20
+        ${secondHeroVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-20'}`}>
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          {/* Left Content with enhanced animations */}
+          <div className="text-left space-y-6 transform transition-all duration-700">
+          <h2 className="text-5xl md:text-6xl font-bold 
+                  bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 
+                  bg-clip-text text-transparent 
+                  leading-tight">
+            Stay Ahead of Threats with Instant Alerts
+          </h2>
+          
+          <p className="text-xl text-white/80 leading-relaxed">
+          Never lose sleep worrying about your crops. SkyLabs' smart alert system monitors your fields 24/7 and sends you real-time notifications if any potential issues arise. From pest and disease alerts to soil moisture and nutrient deficiency warnings, we help you stay ahead of threats and ensure a healthy, thriving harvest. Protect your investment and maximize your profits with SkyLabs
+          </p>
+
+          <button 
+            onClick={() => navigate('/technology')}
+            className="group relative px-10 py-4 
+                bg-gradient-to-r from-purple-600 to-pink-600 
+                rounded-xl overflow-hidden
+                hover:scale-105 active:scale-95
+                transition-all duration-300 ease-out"
+          >
+            <span className="relative z-10 text-white font-semibold 
+                   text-lg flex items-center gap-3">
+            Get Started
+            <Rocket className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+            </span>
+          </button>
+          </div>
+
+          {/* Right Image with enhanced effects */}
+          <div className="relative h-[500px] rounded-2xl overflow-hidden 
+                  transform hover:scale-[1.02] transition-transform duration-700">
+          <img 
+            src="https://i.postimg.cc/rD1G0GNY/IMG-20250129-WA0005.jpg"
+            alt="Space Technology"
+            className="w-full h-full object-cover scale-105  "
+          
+          />
+          <div className="absolute inset-0 bg-gradient-to-t 
+                  from-black/60 via-black/20 to-transparent" />
+          </div>
+        </div>
       </div>      
       {/* Pricing Section */}
-      <div className="w-full px-8 py-20">
+      <div 
+        ref={pricingRef}
+        className={`w-full px-8 py-20 transition-all duration-1000 transform
+        ${pricingVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-20'}`}>
         <h2 className="text-4xl md:text-5xl font-bold text-center 
                       bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 
                       bg-clip-text text-transparent mb-16">
@@ -243,7 +291,7 @@ export function Home() {
                           p-8 hover:border-purple-500/50 transition-all duration-300
                           hover:shadow-lg hover:shadow-purple-500/10">
             <h3 className="text-2xl font-bold text-white mb-4">Basic</h3>
-            <p className="text-4xl font-bold text-white mb-6">₹1999<span className="text-lg text-white/60">/mo</span></p>
+            <p className="text-4xl font-bold text-white mb-6">₹2999<span className="text-lg text-white/60">/mo</span></p>
             <ul className="space-y-4 mb-8">
               <li className="flex items-center text-white/80">
                 <span className="mr-2">✓</span> Daily Satellite Images
@@ -266,7 +314,7 @@ export function Home() {
                           p-8 transform scale-105 shadow-lg shadow-purple-500/20
                           hover:shadow-purple-500/30 transition-all duration-300">
             <h3 className="text-2xl font-bold text-white mb-4">Pro</h3>
-            <p className="text-4xl font-bold text-white mb-6">₹4999<span className="text-lg text-white/60">/mo</span></p>
+            <p className="text-4xl font-bold text-white mb-6">₹4499<span className="text-lg text-white/60">/mo</span></p>
             <ul className="space-y-4 mb-8">
               <li className="flex items-center text-white/80">
                 <span className="mr-2">✓</span> All Basic Features
