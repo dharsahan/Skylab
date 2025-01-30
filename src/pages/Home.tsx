@@ -243,7 +243,7 @@ export function Home() {
                           p-8 hover:border-purple-500/50 transition-all duration-300
                           hover:shadow-lg hover:shadow-purple-500/10">
             <h3 className="text-2xl font-bold text-white mb-4">Basic</h3>
-            <p className="text-4xl font-bold text-white mb-6">₹999<span className="text-lg text-white/60">/mo</span></p>
+            <p className="text-4xl font-bold text-white mb-6">₹1999<span className="text-lg text-white/60">/mo</span></p>
             <ul className="space-y-4 mb-8">
               <li className="flex items-center text-white/80">
                 <span className="mr-2">✓</span> Daily Satellite Images
@@ -266,7 +266,7 @@ export function Home() {
                           p-8 transform scale-105 shadow-lg shadow-purple-500/20
                           hover:shadow-purple-500/30 transition-all duration-300">
             <h3 className="text-2xl font-bold text-white mb-4">Pro</h3>
-            <p className="text-4xl font-bold text-white mb-6">₹2499<span className="text-lg text-white/60">/mo</span></p>
+            <p className="text-4xl font-bold text-white mb-6">₹4999<span className="text-lg text-white/60">/mo</span></p>
             <ul className="space-y-4 mb-8">
               <li className="flex items-center text-white/80">
                 <span className="mr-2">✓</span> All Basic Features
