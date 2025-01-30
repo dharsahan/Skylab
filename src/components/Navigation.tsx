@@ -70,6 +70,37 @@ export function Navigation() {
             </button>
           </div>
         </div>
+
+        {/* Mobile Navigation Menu */}
+        <div 
+          className={`
+            absolute top-full left-0 right-0 
+            mt-2 py-4 px-4
+            bg-black/60 backdrop-blur-xl
+            border border-white/10 rounded-xl
+            transform transition-all duration-300 ease-out
+            md:hidden
+            ${isMenuOpen 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 -translate-y-4 pointer-events-none'}
+          `}
+        >
+          <div className="flex flex-col space-y-4">
+            <MobileNavLink to="/">Home</MobileNavLink>
+            <MobileNavLink to="/technology">Technology</MobileNavLink>
+            <MobileNavLink to="/impact">Impact</MobileNavLink>
+            <MobileNavLink to="/team">Team</MobileNavLink>
+            <Link 
+              to="/contact"
+              className="px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600
+                        hover:from-pink-600 hover:to-purple-600
+                        rounded-lg text-white font-medium
+                        transition-all duration-300"
+            >
+              Contact Us
+            </Link>
+          </div>
+        </div>
       </nav>
     </div>
   );
@@ -98,9 +129,10 @@ function MobileNavLink({ to, children }: { to: string; children: React.ReactNode
   return (
     <Link
       to={to}
-      className={`block py-2 hover:text-purple-400 transition-colors duration-200 ${
-        isActive ? 'text-purple-400' : 'text-white'
-      }`}
+      className={`block px-4 py-2 rounded-lg transition-colors duration-200
+        ${isActive 
+          ? 'bg-purple-600/20 text-purple-400' 
+          : 'text-white hover:bg-white/10'}`}
     >
       {children}
     </Link>
